@@ -48,7 +48,6 @@ includes/   Helper inti: auth/session, integrasi AI (generate soal/modul), helpe
 api/        Endpoint JSON yang dipanggil dari halaman guru/siswa (AJAX)
 public/     Halaman yang diakses browser (login, dashboard guru, halaman siswa) + assets
 sql/        Schema database & file migrasi
-deploy/     Script & panduan deploy ke hosting cPanel
 ```
 
 ## Menjalankan di Lokal (XAMPP)
@@ -59,9 +58,3 @@ deploy/     Script & panduan deploy ke hosting cPanel
 3. Salin `.env.example` menjadi `.env`, lalu isi kredensial database & (opsional)
    `OPENAI_API_KEY` kalau ingin memakai fitur generate soal/modul otomatis.
 4. Buka `http://localhost/RAMAHOME/` — otomatis diarahkan ke halaman login.
-
-## Deploy ke Hosting (cPanel)
-
-Lihat panduan lengkap di [`deploy/PANDUAN_DEPLOY_CPANEL.md`](deploy/PANDUAN_DEPLOY_CPANEL.md).
-Jalankan `php deploy/build_deploy_package.php` untuk membuat dump database + paket file
-siap upload.

@@ -1,7 +1,7 @@
 .env
 .vscode/
 .claude/
-deploy/output/
+deploy/
 KELAS_9/
 spesifikasi-kuis-php-mysql.md
 
