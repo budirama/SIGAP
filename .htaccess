@@ -1,0 +1,12 @@
+# Buka root project -> langsung diarahkan ke form login (public/login.php)
+RewriteEngine On
+RewriteBase /RAMAHOME/
+
+# Hanya root project itu sendiri (path kosong) yang di-redirect; request lain (public/, api/, dst)
+# tidak match pola ini sama sekali sehingga tetap diproses seperti biasa.
+RewriteRule ^$ public/login.php [R=302,L]
+
+# Jangan izinkan .env (berisi kredensial/API key) diakses langsung lewat browser
+<Files ".env">
+    Require all denied
+</Files>

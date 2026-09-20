@@ -1,0 +1,351 @@
+/* ===================================================================
+   SIGAP - SIstem Generate & Analisis Pembelajaran — design system
+   Guru side: clean admin dashboard. Siswa side: playful "candy" theme.
+   Built on top of Bootstrap 5 (loaded via CDN in each page).
+=================================================================== */
+
+:root {
+    --brand: #4f46e5;
+    --brand-dark: #3730a3;
+    --brand-light: #eef0ff;
+    --bg: #f4f5fb;
+    --card-radius: 16px;
+    --ink: #1f2333;
+    --muted: #6b7280;
+
+    --kid-pink: #ff6b9d;
+    --kid-orange: #ffa62b;
+    --kid-teal: #20c997;
+    --kid-purple: #8b5cf6;
+    --kid-yellow: #ffd23f;
+    --kid-blue: #3ea6ff;
+}
+
+body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.font-baloo { font-family: 'Baloo 2', 'Poppins', system-ui, sans-serif; }
+
+a { text-decoration: none; }
+
+/* ---------- shared bits ---------- */
+
+.brand-mark {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand), var(--kid-blue));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+}
+
+.soft-card {
+    background: #fff;
+    border: 1px solid #ecedf5;
+    border-radius: var(--card-radius);
+    box-shadow: 0 2px 10px rgba(30, 34, 60, .04);
+}
+
+.badge-jenjang-SD1 { background: #dcfce7; color: #15803d; }
+.badge-jenjang-SD6 { background: #dbeafe; color: #1d4ed8; }
+.badge-jenjang-SMP9 { background: #fce7f3; color: #be185d; }
+.badge-kesulitan-Mudah { background: #dcfce7; color: #15803d; }
+.badge-kesulitan-Sedang { background: #fef3c7; color: #b45309; }
+.badge-kesulitan-Sukar { background: #fee2e2; color: #b91c1c; }
+.badge-sumber-ai { background: #ede9fe; color: #6d28d9; }
+.badge-sumber-manual { background: #e5e7eb; color: #374151; }
+.badge-skor-tinggi { background: #dcfce7; color: #15803d; }
+.badge-skor-sedang { background: #fef3c7; color: #b45309; }
+.badge-skor-rendah { background: #fee2e2; color: #b91c1c; }
+.badge-predikat-A { background: #dcfce7; color: #15803d; }
+.badge-predikat-B { background: #dbeafe; color: #1d4ed8; }
+.badge-predikat-C { background: #fef3c7; color: #b45309; }
+.badge-predikat-D { background: #fee2e2; color: #b91c1c; }
+
+.kpi-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: #fff; flex-shrink: 0;
+}
+
+/* ===================================================================
+   LOGIN — split screen
+=================================================================== */
+
+.login-shell { min-height: 100vh; }
+
+.login-hero {
+    background: linear-gradient(155deg, var(--brand) 0%, #7c3aed 55%, var(--kid-blue) 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+}
+.login-hero::before, .login-hero::after {
+    content: ''; position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,.12);
+}
+.login-hero::before { width: 260px; height: 260px; top: -80px; right: -60px; }
+.login-hero::after { width: 180px; height: 180px; bottom: -60px; left: -40px; background: rgba(255,255,255,.08); }
+.login-hero .content { position: relative; z-index: 1; }
+.login-hero .emoji-row span { font-size: 34px; margin-right: 10px; opacity: .9; }
+
+.login-card { border-radius: 20px; }
+.role-toggle .btn { border-radius: 999px; font-weight: 600; }
+.role-toggle { background: #f1f2fb; border-radius: 999px; padding: 4px; }
+.role-toggle .btn-check:checked + .btn { background: var(--brand); color: #fff; }
+.role-toggle .btn { color: var(--muted); border: none; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ===================================================================
+   GURU DASHBOARD — sidebar layout
+=================================================================== */
+
+.app-shell { min-height: 100vh; }
+
+.sidebar {
+    width: 240px;
+    background: #17193a;
+    color: #cbd0f0;
+    min-height: 100vh;
+    flex-shrink: 0;
+}
+.sidebar .brand { padding: 20px 18px; }
+.sidebar .brand .name { color: #fff; font-weight: 700; font-size: 15px; }
+.sidebar .brand .sub { font-size: 10px; color: #8f95c7; line-height: 1.25; margin-top: 2px; }
+.sidebar .nav-link {
+    color: #cbd0f0;
+    padding: 11px 18px;
+    border-radius: 10px;
+    margin: 2px 10px;
+    font-size: 14px;
+    display: flex; align-items: center; gap: 10px;
+}
+.sidebar .nav-link:hover { background: rgba(255,255,255,.06); color: #fff; }
+.sidebar .nav-link.active { background: var(--brand); color: #fff; }
+.sidebar .nav-link i { font-size: 17px; width: 20px; text-align: center; }
+
+.topbar {
+    background: #fff;
+    border-bottom: 1px solid #ecedf5;
+    padding: 12px 24px;
+}
+
+.main-content { flex: 1; min-width: 0; }
+
+.section-panel { display: none; }
+.section-panel.active { display: block; }
+
+.chart-box { position: relative; height: 240px; width: 100%; }
+.chart-box-raport { height: 200px; }
+
+.tbl-modern thead th {
+    background: #f7f8fd;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    border-bottom: none;
+}
+.tbl-modern td { vertical-align: middle; font-size: 14px; }
+.tbl-modern tbody tr:hover { background: #f9f9ff; }
+
+.ai-generate-card {
+    background: linear-gradient(135deg, var(--brand-light), #fdf2ff);
+    border: 1px solid #e3e0fb;
+}
+
+/* ===================================================================
+   SISWA DASHBOARD — playful theme
+=================================================================== */
+
+.siswa-hero {
+    background: linear-gradient(135deg, var(--kid-purple), var(--kid-pink));
+    color: #fff;
+    border-radius: 0 0 28px 28px;
+}
+.siswa-avatar {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: rgba(255,255,255,.22);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+}
+
+.kid-tabs .nav-link {
+    border-radius: 999px;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 9px 22px;
+    font-family: 'Baloo 2', sans-serif;
+}
+.kid-tabs .nav-link.active { background: var(--brand); color: #fff; }
+
+.subject-card {
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+    padding: 22px;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+    min-height: 150px;
+    position: relative;
+    overflow: hidden;
+}
+.subject-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.15); }
+.subject-card .emoji { font-size: 40px; }
+.subject-card .title { font-family: 'Baloo 2', sans-serif; font-size: 20px; font-weight: 700; }
+.subject-card .meta { font-size: 12.5px; opacity: .9; }
+.subject-card::after {
+    content: ''; position: absolute; width: 90px; height: 90px; border-radius: 50%;
+    background: rgba(255,255,255,.15); right: -25px; bottom: -25px;
+}
+
+.materi-chip {
+    border-radius: 999px;
+    border: 2px solid #ecedf5;
+    background: #fff;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .15s ease;
+}
+.materi-chip:hover { border-color: var(--brand); color: var(--brand); }
+
+.quiz-progress-wrap .progress { height: 10px; border-radius: 999px; }
+
+.quiz-card {
+    border-radius: 24px;
+    border: none;
+    box-shadow: 0 8px 30px rgba(30,34,60,.08);
+}
+.quiz-card .pertanyaan {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+.soal-visual {
+    display: flex;
+    justify-content: center;
+    margin: 4px 0 18px;
+    padding: 16px;
+    background: #f7f8fd;
+    border-radius: 16px;
+}
+.soal-visual svg { display: block; }
+
+.benda-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    max-width: 320px;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.benda-bandingkan { display: flex; gap: 28px; }
+.benda-kolom { text-align: center; }
+.benda-label { margin-top: 6px; font-weight: 700; color: var(--muted); font-family: 'Baloo 2', sans-serif; }
+
+.modul-card { max-width: 720px; margin: 0 auto; }
+.modul-section { margin-bottom: 22px; }
+.modul-section h6 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.modul-tujuan ul, .modul-poin-penting ul { margin: 0; padding-left: 20px; }
+.modul-tujuan li, .modul-poin-penting li { margin-bottom: 6px; line-height: 1.5; }
+.modul-poin-penting {
+    background: var(--brand-light);
+    border-radius: 16px;
+    padding: 16px 20px 16px 36px;
+}
+.modul-penjelasan-bagian { margin-bottom: 16px; }
+.modul-penjelasan-bagian .judul { font-weight: 700; margin-bottom: 4px; }
+.modul-penjelasan-bagian .isi { line-height: 1.6; }
+.modul-contoh-item {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+}
+.modul-contoh-item .judul { font-weight: 700; color: #c2410c; margin-bottom: 4px; }
+.modul-contoh-item .isi { line-height: 1.6; }
+.isi p { margin: 0 0 8px; }
+.isi p:first-child { margin-top: 0; }
+.isi p:last-child { margin-bottom: 0; }
+.isi ul.modul-isi-list { margin: 6px 0 10px; padding-left: 20px; }
+.isi ul.modul-isi-list:last-child { margin-bottom: 0; }
+.isi ul.modul-isi-list li { margin-bottom: 6px; line-height: 1.55; }
+.isi ul.modul-isi-list li:last-child { margin-bottom: 0; }
+.modul-istilah-item {
+    background: #f7f8fd;
+    border-radius: 12px;
+    padding: 10px 14px;
+    height: 100%;
+}
+.modul-istilah-item .istilah { font-weight: 700; color: var(--brand); }
+.modul-istilah-item .arti { font-size: 13.5px; color: var(--muted); }
+
+.opsi-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border-radius: 16px;
+    border: 2px solid #ecedf5;
+    background: #fff;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all .15s ease;
+}
+.opsi-btn:hover { border-color: var(--kid-blue); background: #f2f9ff; }
+.opsi-btn.selected { border-color: var(--brand); background: var(--brand-light); font-weight: 700; }
+.opsi-btn .letter {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #f1f2fb; color: var(--muted);
+    font-size: 12px; font-weight: 700; margin-right: 10px;
+}
+.opsi-btn.selected .letter { background: var(--brand); color: #fff; }
+
+.result-emoji { font-size: 72px; }
+.result-score { font-family: 'Baloo 2', sans-serif; font-size: 48px; font-weight: 700; color: var(--brand); }
+
+.stat-pill {
+    border-radius: 18px;
+    padding: 16px 18px;
+    color: #fff;
+}
+.stat-pill .value { font-family: 'Baloo 2', sans-serif; font-size: 26px; font-weight: 700; }
+.stat-pill .label { font-size: 12px; opacity: .9; }
+
+.hidden { display: none !important; }
+
+/* ===================================================================
+   CETAK RAPORT
+=================================================================== */
+
+@media print {
+    .sidebar, .topbar, nav.tabs, .no-print { display: none !important; }
+    .main-content, main { padding: 0 !important; margin: 0 !important; }
+    body { background: #fff !important; }
+    .section-panel { display: none !important; }
+    #tab-raport.section-panel { display: block !important; }
+    .soft-card { box-shadow: none !important; border: 1px solid #ddd !important; break-inside: avoid; }
+    .chart-box { height: 150px !important; }
+    table { break-inside: auto; }
+    tr { break-inside: avoid; }
+}
