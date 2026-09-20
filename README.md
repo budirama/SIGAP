@@ -58,3 +58,12 @@ sql/        Schema database & file migrasi
 3. Salin `.env.example` menjadi `.env`, lalu isi kredensial database & (opsional)
    `OPENAI_API_KEY` kalau ingin memakai fitur generate soal/modul otomatis.
 4. Buka `http://localhost/RAMAHOME/` — otomatis diarahkan ke halaman login.
+
+## Dedikasi
+
+Untuk para orang tua — teknologi dan AI bisa membantu membuatkan soal, modul, dan raport,
+tapi tidak bisa menggantikan kehadiran Anda. Aplikasi ini dibuat bukan supaya anak belajar
+sendirian di depan layar, melainkan sebagai alat bantu agar waktu mendampingi anak belajar
+jadi lebih terarah dan bermakna. Tetap luangkan waktu, dampingi, dan rayakan setiap
+kemajuan kecil mereka — dukungan dan kehadiran orang tua adalah faktor terpenting dalam
+tumbuh kembang dan semangat belajar anak.
