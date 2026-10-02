@@ -59,7 +59,7 @@ function shadeColor(hex, percent) {
 }
 
 function renderBangunRuangSvg(bentuk, warna) {
-    const c = warna || '#4f46e5';
+    const c = /^#[0-9a-fA-F]{6}$/.test(warna || '') ? warna : '#4f46e5';
     const depan = c, atas = shadeColor(c, 0.35), samping = shadeColor(c, -0.25);
     let shape = '';
     if (bentuk === 'kubus') {

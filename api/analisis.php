@@ -36,10 +36,21 @@ $median = $n === 0 ? 0 : ($n % 2 ? $skorArr[$mid] : ($skorArr[$mid - 1] + $skorA
 $idAtas = array_column(array_filter($hasil, fn($h) => $h['skor'] >= $median), 'id');
 $idBawah = array_column(array_filter($hasil, fn($h) => $h['skor'] < $median), 'id');
 
-$rows = $db->query(
-    "SELECT d.soal_id, d.hasil_id, d.benar, s.pertanyaan, s.mapel, s.materi, s.jenjang
-     FROM hasil_detail d JOIN soal s ON s.id = d.soal_id"
-)->fetchAll();
+// Hanya jawaban dari sesi yang sedang difilter. Tanpa batasan ini, filter jenjang
+// tetap menarik jawaban sesi lain dan memasukkannya ke kelompok bawah.
+$sesiIds = array_map('intval', array_column($hasil, 'id'));
+if ($sesiIds) {
+    $placeholders = implode(',', array_fill(0, count($sesiIds), '?'));
+    $detailStmt = $db->prepare(
+        "SELECT d.soal_id, d.hasil_id, d.benar, s.pertanyaan, s.mapel, s.materi, s.jenjang
+         FROM hasil_detail d JOIN soal s ON s.id = d.soal_id
+         WHERE d.hasil_id IN ($placeholders)"
+    );
+    $detailStmt->execute($sesiIds);
+    $rows = $detailStmt->fetchAll();
+} else {
+    $rows = [];
+}
 
 $perSoal = [];
 foreach ($rows as $r) {
