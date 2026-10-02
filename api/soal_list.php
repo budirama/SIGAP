@@ -34,5 +34,15 @@ if (!empty($_GET['materi'])) {
 $sql = 'SELECT * FROM soal' . ($where ? ' WHERE ' . implode(' AND ', $where) : '') . ' ORDER BY dibuat_pada DESC';
 $stmt = $db->prepare($sql);
 $stmt->execute($params);
+$rows = $stmt->fetchAll();
 
-echo json_encode($stmt->fetchAll());
+// Halaman siswa tidak menampilkan kunci. Jangan kirim kunci/pembahasan,
+// karena endpoint ini bisa dipanggil langsung selama sesi siswa masih aktif.
+if ($u && $u['role'] === 'siswa') {
+    foreach ($rows as &$row) {
+        unset($row['kunci'], $row['pembahasan']);
+    }
+    unset($row);
+}
+
+echo json_encode($rows);

@@ -10,12 +10,13 @@ $db = getDb();
 // mapel per sesi diturunkan dari kisi-kisi soal yang benar-benar dikerjakan (hasil_detail), bukan
 // dari kolom materi di hasil_sesi — supaya akurat juga untuk sesi "Campur Semua".
 $stmt = $db->prepare(
-    "SELECT h.*, GROUP_CONCAT(DISTINCT k.mapel ORDER BY k.mapel SEPARATOR ', ') AS mapel
+    "SELECT h.id, h.user_id, h.jenjang, h.materi, h.jumlah_soal, h.jumlah_benar, h.skor, h.waktu,
+            GROUP_CONCAT(DISTINCT k.mapel ORDER BY k.mapel SEPARATOR ', ') AS mapel
      FROM hasil_sesi h
      LEFT JOIN hasil_detail d ON d.hasil_id = h.id
      LEFT JOIN kisi_kisi k ON k.id = d.kisi_id
      WHERE h.user_id = ?
-     GROUP BY h.id
+     GROUP BY h.id, h.user_id, h.jenjang, h.materi, h.jumlah_soal, h.jumlah_benar, h.skor, h.waktu
      ORDER BY h.waktu DESC"
 );
 $stmt->execute([$u['id']]);
